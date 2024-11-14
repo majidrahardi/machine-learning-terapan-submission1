@@ -137,12 +137,58 @@ Data yang sudah bersih dan siap digunakan kemudian dibagi menjadi data latih (tr
 Proses persiapan data bertujuan untuk memastikan bahwa data yang dimasukkan ke dalam model pembelajaran mesin tidak hanya bersih dan berkualitas tinggi, tetapi juga siap secara format dan distribusi untuk diolah. Dengan mempersiapkan data secara hati-hati, kita dapat meminimalkan potensi bias, meningkatkan keandalan model, dan mendapatkan prediksi yang akurat dalam mengklasifikasikan jamur sebagai "dapat dimakan" atau "beracun".
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+### Random Forest:
+#### Kelebihan Random Forest:
+1. **Akurasi Tinggi** – Lebih akurat dibanding model tunggal.
+2. **Tahan Overfitting** – Menggabungkan banyak pohon mengurangi overfitting.
+3. **Resisten terhadap Noise** – Tidak mudah terpengaruh data yang salah atau acak.
+4. **Menangani Banyak Fitur** – Efektif untuk dataset dengan fitur banyak.
+5. **Estimasi Fitur Penting** – Bisa menilai pentingnya setiap fitur.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+#### Kekurangan Random Forest:
+1. **Kompleksitas Tinggi** – Butuh banyak komputasi dan memori.
+2. **Interpretasi Sulit** – Hasilnya tidak mudah dipahami seperti pohon keputusan tunggal.
+3. **Lambat untuk Prediksi Real-Time** – Kurang ideal untuk prediksi instan.
+4. **Kurang Optimal untuk Data Waktu** – Tidak cocok untuk data berurutan atau time series.
+
+### Logistic Regression:
+#### Kelebihan Logistic Regression:
+1. **Sederhana dan Mudah Diinterpretasi** – Modelnya sederhana dan mudah dipahami, sehingga memudahkan interpretasi hasil.
+2. **Efisien untuk Dataset Kecil** – Logistic Regression bekerja baik dengan dataset yang lebih kecil dan memiliki fitur yang relevan.
+3. **Cepat dan Ringan** – Proses training dan prediksi cepat, serta membutuhkan sumber daya komputasi yang lebih sedikit dibandingkan model kompleks.
+4. **Probabilitas Output** – Menghasilkan nilai probabilitas, sehingga cocok untuk klasifikasi dengan pengukuran kepercayaan.
+
+#### Kekurangan Logistic Regression:
+1. **Tidak Efektif untuk Hubungan Non-Linear** – Logistic Regression hanya bisa menangani data yang memiliki hubungan linier; kurang efektif untuk hubungan non-linier.
+2. **Rentan terhadap Outlier** – Outlier pada data dapat memengaruhi kinerja model, terutama tanpa normalisasi atau penanganan khusus.
+3. **Tidak Ideal untuk Data yang Sangat Kompleks** – Kurang akurat pada data yang kompleks atau yang memiliki banyak fitur interaksi.
+4. **Mengasumsikan Indepedensi Fitur** – Logistic Regression bekerja optimal jika fitur tidak saling bergantung, asumsi ini sering kali tidak realistis dalam data nyata.
+
+### Decision Tree:
+#### Kelebihan Decision Tree:
+1. **Mudah Diinterpretasi** – Struktur pohon membuat model ini mudah dipahami, visualisasi langsung menunjukkan jalur keputusan.
+2. **Menangani Data Non-Linear** – Decision Tree dapat menangani data yang memiliki hubungan non-linier, cocok untuk berbagai jenis data.
+3. **Tidak Perlu Banyak Pra-pemrosesan** – Model ini tidak memerlukan normalisasi atau penskalaan fitur.
+4. **Bisa Menangani Fitur Kategorikal dan Numerik** – Decision Tree fleksibel dalam menangani tipe data yang berbeda dalam satu model.
+
+#### Kekurangan Decision Tree:
+1. **Rentan terhadap Overfitting** – Decision Tree cenderung mempelajari data secara detail hingga berlebihan, terutama tanpa pemangkasan (*pruning*).
+2. **Sensitif terhadap Variasi Data** – Sedikit perubahan pada data dapat menyebabkan perubahan besar dalam struktur pohon.
+3. **Kurang Optimal pada Dataset Besar** – Pohon yang sangat dalam bisa menjadi lambat dan memori intensif pada dataset besar.
+4. **Cenderung Bias pada Fitur yang Dominan** – Decision Tree cenderung lebih terfokus pada fitur yang memiliki banyak kategori atau nilai tinggi.
+
+### Naive Bayes:
+#### Kelebihan Naive Bayes:
+1. **Cepat dan Efisien** – Naive Bayes memiliki waktu training yang cepat, bahkan pada dataset yang besar.
+2. **Sederhana dan Mudah Diimplementasikan** – Model ini sangat mudah diimplementasikan dan interpretasinya sederhana.
+3. **Performa Baik pada Data Kecil** – Naive Bayes bekerja baik pada dataset yang kecil dan terstruktur dengan baik.
+4. **Bekerja Baik pada Data Kategorikal** – Sangat cocok untuk data kategorikal, seperti klasifikasi teks (misalnya, klasifikasi email sebagai spam atau bukan).
+
+#### Kekurangan Naive Bayes:
+1. **Mengasumsikan Indepedensi Fitur** – Asumsi bahwa setiap fitur bersifat independen tidak selalu realistis, terutama pada data nyata.
+2. **Sensitif terhadap Data Tidak Relevan** – Naive Bayes bisa terpengaruh oleh fitur yang kurang relevan, sehingga perlu pemilihan fitur yang cermat.
+3. **Rentan terhadap Data Tak Terlihat** – Kinerja bisa turun jika terdapat data atau kombinasi kategori yang belum pernah terlihat selama pelatihan.
+4. **Tidak Cocok untuk Data dengan Interaksi Fitur yang Kuat** – Kurang efektif jika fitur memiliki korelasi tinggi, karena asumsi independensi tidak terpenuhi.
 
 ## Evaluation
 Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
