@@ -123,18 +123,12 @@ Sebagian besar atribut dalam dataset adalah kategori, dengan nilai-nilai berbent
 - **Label encoding**  
 digunakan sesuai kebutuhan untuk setiap atribut.
 
-### 5. Normalisasi dan Standarisasi (Jika Dibutuhkan)
-Beberapa algoritma pembelajaran mesin memerlukan data yang terdistribusi dalam rentang tertentu untuk performa yang optimal. Proses normalisasi dan standarisasi dilakukan jika dibutuhkan untuk menyesuaikan skala data.
+### 5. Pemeriksaan Ketidakseimbangan Kelas
+Mengingat bahwa target prediksi adalah label klasifikasi jamur (dapat dimakan atau beracun), penting untuk memeriksa keseimbangan distribusi kelas target. Ketidakseimbangan kelas yang signifikan dapat mempengaruhi performa model. Jika ditemukan, langkah-langkah penanganan seperti:
+- **Synthetic Minority Oversampling Technique (SMOTE)**
 
 ### 6. Pemisahan Data
 Data yang sudah bersih dan siap digunakan kemudian dibagi menjadi data latih (training set) dan data uji (testing set). Pembagian ini dilakukan untuk memastikan bahwa model dapat dievaluasi secara objektif, dengan mengukur kinerjanya pada data yang belum pernah dilihat sebelumnya.
-
-### 7. Pemeriksaan Ketidakseimbangan Kelas
-Mengingat bahwa target prediksi adalah label klasifikasi jamur (dapat dimakan atau beracun), penting untuk memeriksa keseimbangan distribusi kelas target. Ketidakseimbangan kelas yang signifikan dapat mempengaruhi performa model. Jika ditemukan, langkah-langkah penanganan seperti:
-- **Oversampling**
-- **Undersampling**
-- **Metode penyeimbangan lainnya**  
-akan diterapkan.
 
 ### Tujuan
 Proses persiapan data bertujuan untuk memastikan bahwa data yang dimasukkan ke dalam model pembelajaran mesin tidak hanya bersih dan berkualitas tinggi, tetapi juga siap secara format dan distribusi untuk diolah. Dengan mempersiapkan data secara hati-hati, kita dapat meminimalkan potensi bias, meningkatkan keandalan model, dan mendapatkan prediksi yang akurat dalam mengklasifikasikan jamur sebagai "dapat dimakan" atau "beracun".
