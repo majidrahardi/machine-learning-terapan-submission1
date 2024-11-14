@@ -1,47 +1,46 @@
 # Laporan Proyek Machine Learning - Majid Rahardi
 
 ## Domain Proyek
+Jamur adalah organisme yang memiliki peran penting di alam sebagai pengurai, penghasil obat-obatan, dan sebagai sumber makanan. Namun, di balik manfaat tersebut, jamur juga memiliki sisi berbahaya. Beberapa jenis jamur sangat beracun dan dapat menyebabkan efek buruk jika dikonsumsi oleh manusia. Identifikasi jamur beracun dan dapat dimakan sering kali menjadi tantangan karena beberapa spesies memiliki penampilan yang sangat mirip. Kesalahan dalam identifikasi dapat berakibat fatal, termasuk kasus keracunan yang berujung pada kematian.
 
-Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
+Di lapangan, proses pengenalan jamur sering dilakukan secara manual berdasarkan ciri-ciri fisik seperti warna, bentuk, bau, dan tekstur. Pendekatan ini membutuhkan keahlian khusus dan pengalaman yang cukup mendalam untuk menghindari kesalahan yang berbahaya. Hal ini menciptakan kebutuhan akan metode klasifikasi yang lebih andal, otomatis, dan akurat, yang dapat membantu masyarakat umum dan pengumpul jamur untuk mengidentifikasi jamur secara aman.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-  
-  Format Referensi: [Judul Referensi](https://scholar.google.com/) 
+Dalam konteks teknologi dan data, perkembangan dalam pembelajaran mesin (machine learning) menawarkan peluang untuk membangun model prediktif yang mampu mengklasifikasikan jamur berdasarkan atribut fisiknya. Dengan dataset yang memadai, seperti yang tersedia pada dataset klasifikasi jamur dari Kaggle, kita dapat melatih model untuk membedakan antara jamur yang dapat dimakan dan yang beracun. Proyek ini bertujuan untuk memanfaatkan pembelajaran mesin guna menciptakan alat klasifikasi otomatis yang dapat meningkatkan keamanan publik, mempercepat proses identifikasi, dan mengurangi risiko kesalahan fatal akibat konsumsi jamur beracun.
+
+Proyek ini tidak hanya memiliki nilai praktis, tetapi juga dapat berfungsi sebagai kontribusi penting dalam edukasi dan keselamatan publik. Dengan mengotomatiskan identifikasi jamur, kita dapat memberikan solusi inovatif yang berguna bagi kolektor jamur, komunitas peneliti, dan masyarakat umum yang terpapar risiko konsumsi jamur yang salah.
 
 ## Business Understanding
-
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah.
-
-Bagian laporan ini mencakup:
-
 ### Problem Statements
-
-Menjelaskan pernyataan masalah latar belakang:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+1. **Klasifikasi Jamur Beracun dan Dapat Dimakan**  
+   Banyak jamur yang terlihat serupa, tetapi memiliki efek yang sangat berbeda jika dikonsumsi. Beberapa jamur sangat beracun, sementara yang lain dapat dimakan dengan aman. Kesalahan dalam identifikasi dapat menyebabkan keracunan serius atau bahkan kematian. Oleh karena itu, diperlukan sistem klasifikasi yang akurat untuk membedakan jamur yang dapat dimakan dari yang beracun berdasarkan karakteristik fisiknya.
+   
+2. **Ketergantungan pada Ciri-ciri Fisik**  
+   Identifikasi jamur di lapangan sering kali bergantung pada ciri-ciri fisik, seperti bentuk tudung, warna insang, dan bau. Proses ini tidak hanya memakan waktu tetapi juga memerlukan keahlian. Mengotomatiskan klasifikasi ini akan mempermudah pengguna umum, seperti kolektor jamur atau peneliti, dalam membuat keputusan yang aman.
 
 ### Goals
+1. **Membangun Model Klasifikasi**  
+   Tujuan utama adalah membangun model pembelajaran mesin yang dapat mengklasifikasikan jamur sebagai "dapat dimakan" atau "beracun" dengan tingkat akurasi tinggi berdasarkan atribut-atribut fisik yang diberikan dalam dataset.
+   
+2. **Meningkatkan Keamanan Publik**  
+   Dengan memiliki alat klasifikasi yang andal, pengguna dapat mengurangi risiko kesalahan dalam identifikasi jamur yang berbahaya. Hal ini dapat mengurangi jumlah keracunan akibat jamur, memberikan keamanan lebih bagi pengumpul jamur dan masyarakat umum.
+   
+3. **Mengotomatiskan Identifikasi Jamur**  
+   Membantu pengguna umum dalam mengidentifikasi jamur tanpa memerlukan pengetahuan mendalam tentang klasifikasi jamur dengan menggunakan ciri-ciri fisik yang diinputkan ke dalam model.
 
-Menjelaskan tujuan dari pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
-
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution statement. Misalnya, menggunakan dua atau lebih algoritma untuk mencapai solusi yang diinginkan atau melakukan improvement pada baseline model dengan hyperparameter tuning.
-    - Solusi yang diberikan harus dapat terukur dengan metrik evaluasi.
+### Solution Statements
+1. **Pengumpulan Data dan Pemrosesan Data**  
+   Menggunakan dataset klasifikasi jamur dari Kaggle, dataset yang sudah tersedia ini berisi atribut-atribut fisik jamur. Langkah pertama adalah memastikan data bersih, mengatasi nilai yang hilang, dan menormalkan atribut.
+   
+2. **Pengembangan Model Pembelajaran Mesin**  
+   Menggunakan metode pembelajaran mesin yang sesuai seperti algoritma klasifikasi (contoh: Random Forest, Decision Tree, atau Logistic Regression) untuk membangun model klasifikasi yang dapat memprediksi label "dapat dimakan" atau "beracun" berdasarkan atribut fisik.
+   
+3. **Evaluasi Model dan Optimalisasi**  
+   Mengevaluasi model menggunakan metrik seperti akurasi, presisi, dan recall untuk memastikan kinerja yang baik. Melakukan optimalisasi model untuk meningkatkan performa dan mengurangi tingkat kesalahan.
+   
+4. **Implementasi dan Penyediaan Alat Identifikasi**  
+   Mengimplementasikan model dalam aplikasi yang dapat digunakan oleh pengguna umum untuk mengidentifikasi jamur berdasarkan input karakteristik fisik, sehingga mengurangi potensi risiko konsumsi jamur yang beracun.
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
-
 ### Deskripsi Dataset
 Dataset ini berisi data tentang berbagai spesies jamur, dengan tujuan mengklasifikasikan apakah jamur tersebut dapat dimakan (edible) atau beracun (poisonous). Setiap entri dalam dataset mewakili satu spesimen jamur dengan berbagai atribut yang menggambarkan karakteristik fisiknya. Adapun dataset dapat diakses secara publik di [link dataset](https://www.kaggle.com/datasets/uciml/mushroom-classification).
 
