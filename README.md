@@ -42,15 +42,66 @@ Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pe
 ## Data Understanding
 Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+### Deskripsi Dataset
+Dataset ini berisi data tentang berbagai spesies jamur, dengan tujuan mengklasifikasikan apakah jamur tersebut dapat dimakan (edible) atau beracun (poisonous). Setiap entri dalam dataset mewakili satu spesimen jamur dengan berbagai atribut yang menggambarkan karakteristik fisiknya. Adapun dataset dapat diakses secara publik di [link dataset](https://www.kaggle.com/datasets/uciml/mushroom-classification).
 
-### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+### Ukuran Dataset
+- **Jumlah entri (baris)**: 8.124
+- **Jumlah atribut (kolom)**: 23
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
+### Atribut dalam Dataset
+1. **class**: Kategori jamur
+   - Nilai: 'e' (edible), 'p' (poisonous)
+2. **cap-shape**: Bentuk tudung jamur
+   - Nilai: 'b' (bell), 'c' (conical), 'x' (convex), 'f' (flat), 'k' (knobbed), 's' (sunken)
+3. **cap-surface**: Permukaan tudung jamur
+   - Nilai: 'f' (fibrous), 'g' (grooves), 'y' (scaly), 's' (smooth)
+4. **cap-color**: Warna tudung jamur
+   - Nilai: 'n' (brown), 'b' (buff), 'c' (cinnamon), 'g' (gray), 'r' (green), 'p' (pink), 'u' (purple), 'e' (red), 'w' (white), 'y' (yellow)
+5. **bruises**: Adanya memar pada jamur
+   - Nilai: 't' (true), 'f' (false)
+6. **odor**: Bau jamur
+   - Nilai: 'a' (almond), 'l' (anise), 'c' (creosote), 'y' (fishy), 'f' (foul), 'm' (musty), 'n' (none), 'p' (pungent), 's' (spicy)
+7. **gill-attachment**: Keterikatan insang
+   - Nilai: 'a' (attached), 'd' (descending), 'f' (free), 'n' (notched)
+8. **gill-spacing**: Jarak antar insang
+   - Nilai: 'c' (close), 'w' (crowded)
+9. **gill-size**: Ukuran insang
+   - Nilai: 'b' (broad), 'n' (narrow)
+10. **gill-color**: Warna insang
+    - Nilai: 'k' (black), 'n' (brown), 'b' (buff), 'h' (chocolate), 'g' (gray), 'r' (green), 'o' (orange), 'p' (pink), 'u' (purple), 'e' (red), 'w' (white), 'y' (yellow)
+11. **stalk-shape**: Bentuk batang
+    - Nilai: 'e' (enlarging), 't' (tapering)
+12. **stalk-root**: Akar batang
+    - Nilai: 'b' (bulbous), 'c' (club), 'u' (cup), 'e' (equal), 'z' (rhizomorphs), 'r' (rooted), '?' (missing)
+13. **stalk-surface-above-ring**: Permukaan batang di atas cincin
+    - Nilai: 'f' (fibrous), 'y' (scaly), 'k' (silky), 's' (smooth)
+14. **stalk-surface-below-ring**: Permukaan batang di bawah cincin
+    - Nilai: 'f' (fibrous), 'y' (scaly), 'k' (silky), 's' (smooth)
+15. **stalk-color-above-ring**: Warna batang di atas cincin
+    - Nilai: 'n' (brown), 'b' (buff), 'c' (cinnamon), 'g' (gray), 'o' (orange), 'p' (pink), 'e' (red), 'w' (white), 'y' (yellow)
+16. **stalk-color-below-ring**: Warna batang di bawah cincin
+    - Nilai: 'n' (brown), 'b' (buff), 'c' (cinnamon), 'g' (gray), 'o' (orange), 'p' (pink), 'e' (red), 'w' (white), 'y' (yellow)
+17. **veil-type**: Jenis selubung
+    - Nilai: 'p' (partial), 'u' (universal) (Catatan: Semua entri memiliki nilai 'p')
+18. **veil-color**: Warna selubung
+    - Nilai: 'n' (brown), 'o' (orange), 'w' (white), 'y' (yellow)
+19. **ring-number**: Jumlah cincin pada batang
+    - Nilai: 'n' (none), 'o' (one), 't' (two)
+20. **ring-type**: Jenis cincin
+    - Nilai: 'c' (cobwebby), 'e' (evanescent), 'f' (flaring), 'l' (large), 'n' (none), 'p' (pendant), 's' (sheathing), 'z' (zone)
+21. **spore-print-color**: Warna cetakan spora
+    - Nilai: 'k' (black), 'n' (brown), 'b' (buff), 'h' (chocolate), 'r' (green), 'o' (orange), 'u' (purple), 'w' (white), 'y' (yellow)
+22. **population**: Populasi jamur
+    - Nilai: 'a' (abundant), 'c' (clustered), 'n' (numerous), 's' (scattered), 'v' (several), 'y' (solitary)
+23. **habitat**: Habitat jamur
+    - Nilai: 'g' (grasses), 'l' (leaves), 'm' (meadows), 'p' (paths), 'u' (urban), 'w' (waste), 'd' (woods)
+
+### Catatan Penting
+- Atribut `veil-type` memiliki nilai yang sama untuk semua entri ('p'), sehingga tidak memberikan informasi yang bervariasi dan dapat diabaikan dalam analisis.
+- Atribut `stalk-root` memiliki beberapa nilai yang hilang ('?'), sehingga memerlukan penanganan khusus selama analisis data.
+
+Dataset ini dapat digunakan untuk membangun model klasifikasi yang memprediksi apakah suatu jamur dapat dimakan atau beracun berdasarkan karakteristik fisiknya.
 
 ## Data Preparation
 Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
