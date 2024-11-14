@@ -103,11 +103,41 @@ Dataset ini berisi data tentang berbagai spesies jamur, dengan tujuan mengklasif
 Dataset ini dapat digunakan untuk membangun model klasifikasi yang memprediksi apakah suatu jamur dapat dimakan atau beracun berdasarkan karakteristik fisiknya.
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+Tahap Data Preparation bertujuan untuk memastikan bahwa data yang digunakan dalam pembuatan model klasifikasi memiliki kualitas yang baik dan siap untuk diolah. Data yang bersih, bebas dari inkonsistensi, dan disiapkan dengan baik merupakan prasyarat penting untuk mendapatkan hasil analisis yang akurat dan model pembelajaran mesin yang optimal. Berikut adalah langkah-langkah yang dilakukan dalam proses persiapan data pada proyek klasifikasi jamur ini:
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+### 1. Eksplorasi Data Awal
+Dataset yang digunakan berisi informasi tentang spesies jamur, termasuk label klasifikasi "edible" (dapat dimakan) atau "poisonous" (beracun) serta 22 atribut fisik lainnya. Tahap awal mencakup eksplorasi data untuk memahami distribusi atribut, identifikasi tipe data, dan analisis awal nilai-nilai yang ada pada setiap atribut.
+
+### 2. Penanganan Data yang Hilang
+Salah satu tantangan utama dalam dataset ini adalah adanya atribut dengan nilai yang hilang, khususnya pada kolom `stalk-root`, yang memiliki beberapa nilai yang direpresentasikan dengan tanda '?' (missing). Nilai-nilai yang hilang ini memerlukan penanganan yang tepat, seperti:
+- Penggantian dengan nilai tertentu (imputasi)
+- Penghapusan baris
+- Transformasi data
+
+### 3. Pembersihan Data
+Proses pembersihan mencakup penanganan inkonsistensi data, memastikan format data konsisten, serta menghapus atau menangani atribut yang kurang relevan. Sebagai contoh, atribut `veil-type` memiliki nilai yang seragam ('p') untuk semua entri, sehingga atribut ini dihapus karena tidak memberikan variasi atau informasi yang berguna.
+
+### 4. Transformasi dan Encoding Data Kategorikal
+Sebagian besar atribut dalam dataset adalah kategori, dengan nilai-nilai berbentuk simbol atau huruf. Agar data ini dapat digunakan dalam model pembelajaran mesin, diperlukan proses encoding untuk mengubah data kategorikal menjadi bentuk numerik. Teknik seperti:
+- **One-hot encoding**
+- **Label encoding**  
+digunakan sesuai kebutuhan untuk setiap atribut.
+
+### 5. Normalisasi dan Standarisasi (Jika Dibutuhkan)
+Beberapa algoritma pembelajaran mesin memerlukan data yang terdistribusi dalam rentang tertentu untuk performa yang optimal. Proses normalisasi dan standarisasi dilakukan jika dibutuhkan untuk menyesuaikan skala data.
+
+### 6. Pemisahan Data
+Data yang sudah bersih dan siap digunakan kemudian dibagi menjadi data latih (training set) dan data uji (testing set). Pembagian ini dilakukan untuk memastikan bahwa model dapat dievaluasi secara objektif, dengan mengukur kinerjanya pada data yang belum pernah dilihat sebelumnya.
+
+### 7. Pemeriksaan Ketidakseimbangan Kelas
+Mengingat bahwa target prediksi adalah label klasifikasi jamur (dapat dimakan atau beracun), penting untuk memeriksa keseimbangan distribusi kelas target. Ketidakseimbangan kelas yang signifikan dapat mempengaruhi performa model. Jika ditemukan, langkah-langkah penanganan seperti:
+- **Oversampling**
+- **Undersampling**
+- **Metode penyeimbangan lainnya**  
+akan diterapkan.
+
+### Tujuan
+Proses persiapan data bertujuan untuk memastikan bahwa data yang dimasukkan ke dalam model pembelajaran mesin tidak hanya bersih dan berkualitas tinggi, tetapi juga siap secara format dan distribusi untuk diolah. Dengan mempersiapkan data secara hati-hati, kita dapat meminimalkan potensi bias, meningkatkan keandalan model, dan mendapatkan prediksi yang akurat dalam mengklasifikasikan jamur sebagai "dapat dimakan" atau "beracun".
 
 ## Modeling
 Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
