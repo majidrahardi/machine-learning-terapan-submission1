@@ -191,19 +191,57 @@ Proses persiapan data bertujuan untuk memastikan bahwa data yang dimasukkan ke d
 4. **Tidak Cocok untuk Data dengan Interaksi Fitur yang Kuat** – Kurang efektif jika fitur memiliki korelasi tinggi, karena asumsi independensi tidak terpenuhi.
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+### Confusion Matrix
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
+Confusion Matrix adalah tabel yang digunakan untuk mengevaluasi kinerja model klasifikasi dengan menghitung jumlah prediksi yang benar dan salah dari setiap kelas. Tabel ini menunjukkan bagaimana model memprediksi setiap kelas dan membantu mengidentifikasi di mana kesalahan terjadi.
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+### Komponen Confusion Matrix
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+Confusion Matrix terdiri dari empat komponen utama:
 
-**---Ini adalah bagian akhir laporan---**
+1. **True Positive (TP)**: Prediksi yang benar di mana model memprediksi positif dan hasil sebenarnya juga positif.
+2. **True Negative (TN)**: Prediksi yang benar di mana model memprediksi negatif dan hasil sebenarnya juga negatif.
+3. **False Positive (FP)**: Prediksi salah di mana model memprediksi positif, tetapi hasil sebenarnya adalah negatif (*Type I Error*).
+4. **False Negative (FN)**: Prediksi salah di mana model memprediksi negatif, tetapi hasil sebenarnya adalah positif (*Type II Error*).
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+### Struktur Confusion Matrix:
+
+|                 | Prediksi Positif | Prediksi Negatif |
+|-----------------|------------------|------------------|
+| **Aktual Positif** | True Positive (TP)  | False Negative (FN) |
+| **Aktual Negatif** | False Positive (FP) | True Negative (TN)  |
+
+### Metrik dari Confusion Matrix
+
+Confusion Matrix memungkinkan kita menghitung berbagai metrik evaluasi penting, antara lain:
+
+- **Akurasi**: Proporsi prediksi yang benar dari seluruh prediksi.
+  \[
+  \text{Akurasi} = \frac{TP + TN}{TP + TN + FP + FN}
+  \]
+
+- **Presisi**: Proporsi prediksi positif yang benar dari seluruh prediksi positif.
+  \[
+  \text{Presisi} = \frac{TP}{TP + FP}
+  \]
+
+- **Recall (Sensitivitas)**: Proporsi kasus positif yang teridentifikasi dengan benar oleh model.
+  \[
+  \text{Recall} = \frac{TP}{TP + FN}
+  \]
+
+- **F1-Score**: Rata-rata harmonis dari presisi dan recall, mengukur keseimbangan antara keduanya.
+  \[
+  \text{F1-Score} = 2 \times \frac{\text{Presisi} \times \text{Recall}}{\text{Presisi} + \text{Recall}}
+  \]
+
+### Kegunaan Confusion Matrix
+
+Confusion Matrix sangat berguna untuk:
+
+- Mengidentifikasi di mana kesalahan model terjadi, apakah lebih banyak FP atau FN.
+- Mengevaluasi performa model, terutama pada data yang tidak seimbang.
+- Memahami trade-off antara presisi dan recall, membantu dalam pemilihan model atau tuning parameter.
+
+Dengan Confusion Matrix, kita bisa mendapatkan gambaran yang lebih mendalam tentang kinerja model, terutama dalam aplikasi di mana kesalahan positif atau negatif memiliki dampak yang signifikan, seperti dalam diagnosa medis atau deteksi penipuan.
+
