@@ -166,31 +166,96 @@ Dataset yang digunakan berisi informasi tentang spesies jamur, termasuk label kl
 
 only showing top 20 rows
 
+- ```python
+   total_records = df.count()
+   print(f"Total number of records: {total_records}")
+   class_distribution = df.groupBy('class').count()
+   print("Class distribution:")
+   class_distribution.show()
+  ```
+  Kode tersebut memiliki luaran:
+  ```python
+  Total number of records: 8124
+  Class distribution:
+   | class | count |
+   |-------|-------|
+   | e     | 4208  |
+   | p     | 3916  |
+
+  ```
+
+### 2. Cek Missing Value 
+Salah satu tantangan utama dalam dataset ini adalah adanya atribut dengan nilai yang hilang, oleh karena itu perlu diadakan pengecekan data hilang.
+
+- ```python
+    for colname in df.columns:
+    null_count = df.filter(col(colname).isNull()).count()
+    print(f" {colname}: {null_count}")
+  ```
+  Kode tersebut memiliki luaran:
+  ```python
+    class: 0
+    cap-shape: 0
+    cap-surface: 0
+    cap-color: 0
+    bruises: 0
+    odor: 0
+    gill-attachment: 0
+    gill-spacing: 0
+    gill-size: 0
+    gill-color: 0
+    stalk-shape: 0
+    stalk-root: 0
+    stalk-surface-above-ring: 0
+    stalk-surface-below-ring: 0
+    stalk-color-above-ring: 0
+    stalk-color-below-ring: 0
+    veil-type: 0
+    veil-color: 0
+    ring-number: 0
+    ring-type: 0
+    spore-print-color: 0
+    population: 0
+    habitat: 0
+  ```
+
+Dari output tersebut menunjukan bahwa tidak ada data yang hilang.
+
+### 3. Transformasi dan Encoding Data Kategorikal
+Sebagian besar atribut dalam dataset adalah kategori, dengan nilai-nilai berbentuk simbol atau huruf. Agar data ini dapat digunakan dalam model pembelajaran mesin, diperlukan proses encoding untuk mengubah data kategorikal menjadi bentuk numerik. 
+
+- ```python
+	string_columns = [col_name for col_name, col_type in df.dtypes if col_type == 'string']
+	indexers = [StringIndexer(inputCol=col_name, outputCol=col_name+"_index", handleInvalid="skip").fit(df) for col_name in string_columns]
+	pipeline = Pipeline(stages=indexers)
+	df_encoded = pipeline.fit(df).transform(df)
+	df_encoded.select([col_name+"_index" for col_name in string_columns]).show()
+  ```
+  Kode tersebut memiliki luaran:
   
+  | class_index | cap-shape_index | cap-surface_index | cap-color_index | bruises_index | odor_index | gill-attachment_index | gill-spacing_index | gill-size_index | gill-color_index | stalk-shape_index | stalk-root_index | stalk-surface-above-ring_index | stalk-surface-below-ring_index | stalk-color-above-ring_index | stalk-color-below-ring_index | veil-type_index | veil-color_index | ring-number_index | ring-type_index | spore-print-color_index | population_index | habitat_index |
+   |-------------|-----------------|-------------------|-----------------|---------------|------------|-----------------------|--------------------|-----------------|------------------|-------------------|------------------|------------------------------|------------------------------|----------------------------|----------------------------|-----------------|------------------|-------------------|-----------------|-------------------------|------------------|---------------|
+   | 1.0         | 0.0             | 1.0               | 0.0             | 1.0           | 6.0        | 0.0                   | 0.0                | 1.0             | 7.0              | 1.0               | 2.0              | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0             | 2.0                     | 2.0              | 4.0           |
+   | 0.0         | 0.0             | 1.0               | 3.0             | 1.0           | 4.0        | 0.0                   | 0.0                | 0.0             | 7.0              | 1.0               | 3.0              | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0             | 1.0                     | 3.0              | 1.0           |
+   | 0.0         | 3.0             | 1.0               | 4.0             | 1.0           | 5.0        | 0.0                   | 0.0                | 0.0             | 3.0              | 1.0               | 3.0              | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0             | 1.0                     | 3.0              | 5.0           |
+   | 1.0         | 0.0             | 0.0               | 4.0             | 1.0           | 6.0        | 0.0                   | 0.0                | 1.0             | 3.0              | 1.0               | 2.0              | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0             | 2.0                     | 2.0              | 4.0           |
+   | 0.0         | 0.0             | 1.0               | 1.0             | 0.0           | 0.0        | 0.0                   | 1.0                | 0.0             | 7.0              | 0.0               | 2.0              | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 1.0             | 1.0                     | 4.0              | 1.0           |
+   | 0.0         | 0.0             | 0.0               | 3.0             | 1.0           | 4.0        | 0.0                   | 0.0                | 0.0             | 3.0              | 1.0               | 3.0              | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0             | 2.0                     | 3.0              | 1.0           |
+   | 0.0         | 3.0             | 1.0               | 4.0             | 1.0           | 4.0        | 0.0                   | 0.0                | 0.0             | 4.0              | 1.0               | 3.0              | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0             | 2.0                     | 3.0              | 5.0           |
+   | 0.0         | 3.0             | 0.0               | 4.0             | 1.0           | 5.0        | 0.0                   | 0.0                | 0.0             | 3.0              | 1.0               | 3.0              | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0             | 1.0                     | 2.0              | 5.0           |
+   | 1.0         | 0.0             | 0.0               | 4.0             | 1.0           | 6.0        | 0.0                   | 0.0                | 1.0             | 1.0              | 1.0               | 2.0              | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0             | 2.0                     | 0.0              | 1.0           |
+   | 0.0         | 3.0             | 1.0               | 3.0             | 1.0           | 4.0        | 0.0                   | 0.0                | 0.0             | 4.0              | 1.0               | 3.0              | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0             | 2.0                     | 2.0              | 5.0           |
 
-### 2. Penanganan Data yang Hilang
-Salah satu tantangan utama dalam dataset ini adalah adanya atribut dengan nilai yang hilang, khususnya pada kolom `stalk-root`, yang memiliki beberapa nilai yang direpresentasikan dengan tanda '?' (missing). Nilai-nilai yang hilang ini memerlukan penanganan yang tepat, seperti:
-- Penggantian dengan nilai tertentu (imputasi)
-- Penghapusan baris
-- Transformasi data
+only showing top 20 rows
 
-### 3. Pembersihan Data
-Proses pembersihan mencakup penanganan inkonsistensi data, memastikan format data konsisten, serta menghapus atau menangani atribut yang kurang relevan. Sebagai contoh, atribut `veil-type` memiliki nilai yang seragam ('p') untuk semua entri, sehingga atribut ini dihapus karena tidak memberikan variasi atau informasi yang berguna.
-
-### 4. Transformasi dan Encoding Data Kategorikal
-Sebagian besar atribut dalam dataset adalah kategori, dengan nilai-nilai berbentuk simbol atau huruf. Agar data ini dapat digunakan dalam model pembelajaran mesin, diperlukan proses encoding untuk mengubah data kategorikal menjadi bentuk numerik. Teknik seperti:
-- **One-hot encoding**
-- **Label encoding**  
-digunakan sesuai kebutuhan untuk setiap atribut.
-
-### 5. Pemeriksaan Ketidakseimbangan Kelas
+### 4. Pemeriksaan Ketidakseimbangan Kelas
 Mengingat bahwa target prediksi adalah label klasifikasi jamur (dapat dimakan atau beracun), penting untuk memeriksa keseimbangan distribusi kelas target. Ketidakseimbangan kelas yang signifikan dapat mempengaruhi performa model. Jika ditemukan, langkah-langkah penanganan seperti:
 - **Synthetic Minority Oversampling Technique (SMOTE)**
 
-### 6. Analisis Korelasi
+### 5. Analisis Korelasi
 Analisis Korelasi adalah metode statistik yang digunakan untuk mengukur dan mengevaluasi hubungan antara dua variabel atau lebih. Tujuan utama dari analisis ini adalah untuk menentukan seberapa kuat hubungan tersebut dan apakah hubungan tersebut bersifat positif, negatif, atau netral.
 
-### 7. Pemisahan Data
+### 6. Pemisahan Data
 Data yang sudah bersih dan siap digunakan kemudian dibagi menjadi data latih (training set) dan data uji (testing set). Pembagian ini dilakukan untuk memastikan bahwa model dapat dievaluasi secara objektif, dengan mengukur kinerjanya pada data yang belum pernah dilihat sebelumnya.
 
 ### Tujuan
