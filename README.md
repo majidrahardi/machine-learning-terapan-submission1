@@ -401,15 +401,75 @@ Confusion Matrix memungkinkan kita menghitung berbagai metrik evaluasi penting, 
   
 - **F1-Score**: Rata-rata harmonis dari presisi dan recall, mengukur keseimbangan antara keduanya. F1-Score = 2 (Presisi x Recall) / Presisi + Recall
 
-### Kegunaan Confusion Matrix
+### Hasil Confusion Matrix
 
-Confusion Matrix sangat berguna untuk:
+- Confusion Matrix Random Forest
+  
+![Confusion Matrix Random Forest](https://github.com/user-attachments/assets/4887a649-59b6-4080-81e1-0229f1665152)
 
-- Mengidentifikasi di mana kesalahan model terjadi, apakah lebih banyak FP atau FN.
-- Mengevaluasi performa model, terutama pada data yang tidak seimbang.
-- Memahami trade-off antara presisi dan recall, membantu dalam pemilihan model atau tuning parameter.
 
-Dengan Confusion Matrix, kita bisa mendapatkan gambaran yang lebih mendalam tentang kinerja model, terutama dalam aplikasi di mana kesalahan positif atau negatif memiliki dampak yang signifikan, seperti dalam diagnosa medis atau deteksi penipuan.
+- Confusion Matrix Logistic Regression
+  
+![Confusion Matrix Logistic Regression](https://github.com/user-attachments/assets/a524b311-af1b-4a49-8407-d62f2894012d)
+
+  
+- Confusion Matrix Decision Tree
+  
+![Confusion Matrix Decision Tree](https://github.com/user-attachments/assets/f50d58bb-19cb-487d-b326-ce415c09e928)
+
+  
+- Confusion Matrix Naive Bayes
+  
+![Confusion Matrix Naive Bayes](https://github.com/user-attachments/assets/038cda72-d1cd-485b-8427-1fdf662f193c)
+
+
+### Kesimpulan
+- ```python
+	print_metrics('Random Forest', rf_val_metrics, 'Validation')
+	print_metrics('Logistic Regression', lr_val_metrics, 'Validation')
+	print_metrics('Decision Tree', dt_val_metrics, 'Validation')
+	print_metrics('Naive Bayes', nb_val_metrics, 'Validation')
+	print_metrics('Random Forest', rf_test_metrics, 'Test')
+	print_metrics('Logistic Regression', lr_test_metrics, 'Test')
+	print_metrics('Decision Tree', dt_test_metrics, 'Test')
+	print_metrics('Naive Bayes', nb_test_metrics, 'Test')
+  ```
+  Kode tersebut memiliki luaran:
+    ```python
+  	Random Forest (Test)
+	Accuracy: 98.87%
+	Precision: 98.90%
+	Recall: 98.87%
+	F1-Score: 98.87%
+	
+	Logistic Regression (Test)
+	Accuracy: 84.49%
+	Precision: 84.92%
+	Recall: 84.49%
+	F1-Score: 84.47%
+	
+	Decision Tree (Test)
+	Accuracy: 98.24%
+	Precision: 98.24%
+	Recall: 98.24%
+	F1-Score: 98.24%
+	
+	Naive Bayes (Test)
+	Accuracy: 75.54%
+	Precision: 75.59%
+	Recall: 75.54%
+	F1-Score: 75.49%
+  ```
+
+Berdasarkan hasil evaluasi model yang diterapkan pada dataset ini, Random Forest menunjukkan kinerja terbaik dengan akurasi, presisi, recall, dan F1-Score masing-masing mencapai 98.87%. Angka ini menunjukkan bahwa model Random Forest dapat dengan sangat baik mengklasifikasikan data, dengan kesalahan klasifikasi yang sangat minimal.
+
+Model Decision Tree juga menunjukkan kinerja yang sangat baik, dengan hasil yang hampir serupa dengan Random Forest, yaitu akurasi, presisi, recall, dan F1-Score masing-masing mencapai 98.24%. Meskipun sedikit lebih rendah dibandingkan Random Forest, Decision Tree tetap memberikan performa yang sangat baik dalam klasifikasi data.
+
+Di sisi lain, Logistic Regression memiliki hasil yang cukup baik dengan akurasi 84.49%, presisi 84.92%, recall 84.49%, dan F1-Score 84.47%. Meskipun lebih rendah dibandingkan Random Forest dan Decision Tree, Logistic Regression masih menunjukkan performa yang solid, namun kurang optimal dibandingkan dengan model lainnya.
+
+Terakhir, Naive Bayes menunjukkan hasil yang lebih rendah dengan akurasi 75.54%, presisi 75.59%, recall 75.54%, dan F1-Score 75.49%. Hasil ini mengindikasikan bahwa model Naive Bayes kurang efektif dibandingkan dengan model lainnya dalam hal klasifikasi data pada dataset ini.
+
+Secara keseluruhan, Random Forest dan Decision Tree adalah model yang lebih unggul dalam mengklasifikasikan data, sedangkan Logistic Regression dan Naive Bayes memiliki performa yang lebih rendah. Oleh karena itu, untuk aplikasi yang membutuhkan akurasi dan performa tinggi, Random Forest atau Decision Tree akan menjadi pilihan yang lebih baik.
 
 ## Referensi
 [1] O. Tarawneh, M. Tarawneh, Y. Sharrab, and M. Husni, "Mushroom classification using machine-learning techniques," in AIP Conference Proceedings, vol. 2979, no. 1, Oct. 2023.
