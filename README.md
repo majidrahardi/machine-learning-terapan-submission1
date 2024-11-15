@@ -215,25 +215,13 @@ Confusion Matrix terdiri dari empat komponen utama:
 
 Confusion Matrix memungkinkan kita menghitung berbagai metrik evaluasi penting, antara lain:
 
-- **Akurasi**: Proporsi prediksi yang benar dari seluruh prediksi.
-  \[
-  \text{Akurasi} = \frac{TP + TN}{TP + TN + FP + FN}
-  \]
+- **Akurasi**: Proporsi prediksi yang benar dari seluruh prediksi. Akurasi = TP + TN / TP + TN + FP + FN
 
-- **Presisi**: Proporsi prediksi positif yang benar dari seluruh prediksi positif.
-  \[
-  \text{Presisi} = \frac{TP}{TP + FP}
-  \]
+- **Presisi**: Proporsi prediksi positif yang benar dari seluruh prediksi positif. Presisi = TP / TP + FP
 
-- **Recall (Sensitivitas)**: Proporsi kasus positif yang teridentifikasi dengan benar oleh model.
-  \[
-  \text{Recall} = \frac{TP}{TP + FN}
-  \]
-
-- **F1-Score**: Rata-rata harmonis dari presisi dan recall, mengukur keseimbangan antara keduanya.
-  \[
-  \text{F1-Score} = 2 \times \frac{\text{Presisi} \times \text{Recall}}{\text{Presisi} + \text{Recall}}
-  \]
+- **Recall (Sensitivitas)**: Proporsi kasus positif yang teridentifikasi dengan benar oleh model. Recall = TP / TP + FN
+  
+- **F1-Score**: Rata-rata harmonis dari presisi dan recall, mengukur keseimbangan antara keduanya. F1-Score = 2 (Presisi x Recall) / Presisi + Recall
 
 ### Kegunaan Confusion Matrix
 
