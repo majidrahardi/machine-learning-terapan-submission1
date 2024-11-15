@@ -107,6 +107,69 @@ Tahap Data Preparation bertujuan untuk memastikan bahwa data yang digunakan dala
 
 ### 1. Eksplorasi Data Awal
 Dataset yang digunakan berisi informasi tentang spesies jamur, termasuk label klasifikasi "edible" (dapat dimakan) atau "poisonous" (beracun) serta 22 atribut fisik lainnya. Tahap awal mencakup eksplorasi data untuk memahami distribusi atribut, identifikasi tipe data, dan analisis awal nilai-nilai yang ada pada setiap atribut.
+- ```python
+  df.shape
+  ```
+  Kode tersebut memiliki luaran:
+  ```python
+  (8124, 23)
+  ```
+
+- ```python
+  df.keys()
+  ```
+  Kode tersebut memiliki luaran:
+  ```python
+  Index(['class', 'cap-shape', 'cap-surface', 'cap-color', 'bruises', 'odor',
+       'gill-attachment', 'gill-spacing', 'gill-size', 'gill-color',
+       'stalk-shape', 'stalk-root', 'stalk-surface-above-ring',
+       'stalk-surface-below-ring', 'stalk-color-above-ring',
+       'stalk-color-below-ring', 'veil-type', 'veil-color', 'ring-number',
+       'ring-type', 'spore-print-color', 'population', 'habitat'],
+      dtype='object')
+  ```
+
+- ```python
+  df.isnull().sum()
+  ```
+  Kode tersebut memiliki luaran:
+  ```python
+  (gambar)
+  ```
+- ```python
+  df.show()
+  ```
+  Kode tersebut memiliki luaran:
+  ```python
+  +-----+---------+-----------+---------+-------+----+---------------+------------+---------+----------+-----------+----------+------------------------+------------------------+----------------------+----------------------+---------+----------+-----------+---------+-----------------+----------+-------+
+|class|cap-shape|cap-surface|cap-color|bruises|odor|gill-attachment|gill-spacing|gill-size|gill-color|stalk-shape|stalk-root|stalk-surface-above-ring|stalk-surface-below-ring|stalk-color-above-ring|stalk-color-below-ring|veil-type|veil-color|ring-number|ring-type|spore-print-color|population|habitat|
++-----+---------+-----------+---------+-------+----+---------------+------------+---------+----------+-----------+----------+------------------------+------------------------+----------------------+----------------------+---------+----------+-----------+---------+-----------------+----------+-------+
+|    p|        x|          s|        n|      t|   p|              f|           c|        n|         k|          e|         e|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                k|         s|      u|
+|    e|        x|          s|        y|      t|   a|              f|           c|        b|         k|          e|         c|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                n|         n|      g|
+|    e|        b|          s|        w|      t|   l|              f|           c|        b|         n|          e|         c|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                n|         n|      m|
+|    p|        x|          y|        w|      t|   p|              f|           c|        n|         n|          e|         e|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                k|         s|      u|
+|    e|        x|          s|        g|      f|   n|              f|           w|        b|         k|          t|         e|                       s|                       s|                     w|                     w|        p|         w|          o|        e|                n|         a|      g|
+|    e|        x|          y|        y|      t|   a|              f|           c|        b|         n|          e|         c|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                k|         n|      g|
+|    e|        b|          s|        w|      t|   a|              f|           c|        b|         g|          e|         c|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                k|         n|      m|
+|    e|        b|          y|        w|      t|   l|              f|           c|        b|         n|          e|         c|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                n|         s|      m|
+|    p|        x|          y|        w|      t|   p|              f|           c|        n|         p|          e|         e|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                k|         v|      g|
+|    e|        b|          s|        y|      t|   a|              f|           c|        b|         g|          e|         c|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                k|         s|      m|
+|    e|        x|          y|        y|      t|   l|              f|           c|        b|         g|          e|         c|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                n|         n|      g|
+|    e|        x|          y|        y|      t|   a|              f|           c|        b|         n|          e|         c|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                k|         s|      m|
+|    e|        b|          s|        y|      t|   a|              f|           c|        b|         w|          e|         c|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                n|         s|      g|
+|    p|        x|          y|        w|      t|   p|              f|           c|        n|         k|          e|         e|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                n|         v|      u|
+|    e|        x|          f|        n|      f|   n|              f|           w|        b|         n|          t|         e|                       s|                       f|                     w|                     w|        p|         w|          o|        e|                k|         a|      g|
+|    e|        s|          f|        g|      f|   n|              f|           c|        n|         k|          e|         e|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                n|         y|      u|
+|    e|        f|          f|        w|      f|   n|              f|           w|        b|         k|          t|         e|                       s|                       s|                     w|                     w|        p|         w|          o|        e|                n|         a|      g|
+|    p|        x|          s|        n|      t|   p|              f|           c|        n|         n|          e|         e|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                k|         s|      g|
+|    p|        x|          y|        w|      t|   p|              f|           c|        n|         n|          e|         e|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                n|         s|      u|
+|    p|        x|          s|        n|      t|   p|              f|           c|        n|         k|          e|         e|                       s|                       s|                     w|                     w|        p|         w|          o|        p|                n|         s|      u|
++-----+---------+-----------+---------+-------+----+---------------+------------+---------+----------+-----------+----------+------------------------+------------------------+----------------------+----------------------+---------+----------+-----------+---------+-----------------+----------+-------+
+only showing top 20 rows
+  ```
+
+
+  
 
 ### 2. Penanganan Data yang Hilang
 Salah satu tantangan utama dalam dataset ini adalah adanya atribut dengan nilai yang hilang, khususnya pada kolom `stalk-root`, yang memiliki beberapa nilai yang direpresentasikan dengan tanda '?' (missing). Nilai-nilai yang hilang ini memerlukan penanganan yang tepat, seperti:
