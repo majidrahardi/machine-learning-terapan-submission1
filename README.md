@@ -133,9 +133,10 @@ Dataset yang digunakan berisi informasi tentang spesies jamur, termasuk label kl
   df.isnull().sum()
   ```
   Kode tersebut memiliki luaran:
-  ```python
-  (gambar)
-  ```
+  
+![isNull](https://github.com/user-attachments/assets/d4a3117d-6d0b-400f-942a-7ffd65d4c1fd)
+
+
 - ```python
   df.show()
   ```
@@ -286,12 +287,32 @@ Mengingat bahwa target prediksi adalah label klasifikasi jamur (dapat dimakan at
 
 ### 5. Analisis Korelasi
 Analisis Korelasi adalah metode statistik yang digunakan untuk mengukur dan mengevaluasi hubungan antara dua variabel atau lebih. Tujuan utama dari analisis ini adalah untuk menentukan seberapa kuat hubungan tersebut dan apakah hubungan tersebut bersifat positif, negatif, atau netral.
+- ```python
+	#Menampilkan heatmap menggunakan Seaborn dan Matplotlib
+	plt.figure(figsize=(12, 8))
+	sns.heatmap(correlation_df, annot=True, cmap="coolwarm", fmt=".2f", linewidths=.5)
+	plt.title("Correlation Matrix Heatmap (Numeric Columns Only)")
+	plt.show()
+  ```
+  Kode tersebut memiliki luaran:
+  ![CorrelationAnalysis](https://github.com/user-attachments/assets/006b7361-5a54-4953-8541-e80b90179eef)
 
 ### 6. Pemisahan Data
 Data yang sudah bersih dan siap digunakan kemudian dibagi menjadi data latih (training set) dan data uji (testing set). Pembagian ini dilakukan untuk memastikan bahwa model dapat dievaluasi secara objektif, dengan mengukur kinerjanya pada data yang belum pernah dilihat sebelumnya.
-
-### Tujuan
-Proses persiapan data bertujuan untuk memastikan bahwa data yang dimasukkan ke dalam model pembelajaran mesin tidak hanya bersih dan berkualitas tinggi, tetapi juga siap secara format dan distribusi untuk diolah. Dengan mempersiapkan data secara hati-hati, kita dapat meminimalkan potensi bias, meningkatkan keandalan model, dan mendapatkan prediksi yang akurat dalam mengklasifikasikan jamur sebagai "dapat dimakan" atau "beracun".
+- ```python
+	# Membagi data menjadi train (50%), test (25%), dan validation (25%)
+	train, temp = df_split.randomSplit([0.5, 0.5], seed=42)
+	test, validation = temp.randomSplit([0.5, 0.5], seed=42)
+	print("Training Dataset Count: " + str(train.count()))
+	print("Test Dataset Count: " + str(test.count()))
+	print("Validation Dataset Count: " + str(validation.count()))
+  ```
+  Kode tersebut memiliki luaran:
+  ```python
+ 	Training Dataset Count: 4115
+	Test Dataset Count: 2044
+	Validation Dataset Count: 1965
+  ```
 
 ## Modeling
 ### Random Forest:
