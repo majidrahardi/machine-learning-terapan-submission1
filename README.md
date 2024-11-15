@@ -1,13 +1,13 @@
 # Laporan Proyek Machine Learning - Majid Rahardi
 
 ## Domain Proyek
-Jamur adalah organisme yang memiliki peran penting di alam sebagai pengurai, penghasil obat-obatan, dan sebagai sumber makanan [1]. Namun, di balik manfaat tersebut, jamur juga memiliki sisi berbahaya. Beberapa jenis jamur sangat beracun dan dapat menyebabkan efek buruk jika dikonsumsi oleh manusia. Identifikasi jamur beracun dan dapat dimakan sering kali menjadi tantangan karena beberapa spesies memiliki penampilan yang sangat mirip. Kesalahan dalam identifikasi dapat berakibat fatal, termasuk kasus keracunan yang berujung pada kematian [2].
+Jamur adalah organisme yang memiliki peran penting di alam sebagai pengurai, penghasil obat-obatan, dan sebagai sumber makanan [1](https://pubs.aip.org/aip/acp/article-abstract/2979/1/030003/2917941/Mushroom-classification-using-machine-learning?redirectedFrom=fulltext). Namun, di balik manfaat tersebut, jamur juga memiliki sisi berbahaya. Beberapa jenis jamur sangat beracun dan dapat menyebabkan efek buruk jika dikonsumsi oleh manusia. Identifikasi jamur beracun dan dapat dimakan sering kali menjadi tantangan karena beberapa spesies memiliki penampilan yang sangat mirip. Kesalahan dalam identifikasi dapat berakibat fatal, termasuk kasus keracunan yang berujung pada kematian [2](https://onlinelibrary.wiley.com/doi/10.1155/2020/8849011).
 
-Di lapangan, proses pengenalan jamur sering dilakukan secara manual berdasarkan ciri-ciri fisik seperti warna, bentuk, bau, dan tekstur. Pendekatan ini membutuhkan keahlian khusus dan pengalaman yang cukup mendalam untuk menghindari kesalahan yang berbahaya [3]. Hal ini menciptakan kebutuhan akan metode klasifikasi yang lebih andal, otomatis, dan akurat, yang dapat membantu masyarakat umum dan pengumpul jamur untuk mengidentifikasi jamur secara aman [4].
+Di lapangan, proses pengenalan jamur sering dilakukan secara manual berdasarkan ciri-ciri fisik seperti warna, bentuk, bau, dan tekstur. Pendekatan ini membutuhkan keahlian khusus dan pengalaman yang cukup mendalam untuk menghindari kesalahan yang berbahaya [3](https://www.kaggle.com/datasets/uciml/mushroom-classification). Hal ini menciptakan kebutuhan akan metode klasifikasi yang lebih andal, otomatis, dan akurat, yang dapat membantu masyarakat umum dan pengumpul jamur untuk mengidentifikasi jamur secara aman [4](https://pdfs.semanticscholar.org/75ff/daceb8726502211d5d6f8aa5588859507931.pdf).
 
-Dalam konteks teknologi dan data, perkembangan dalam pembelajaran mesin (machine learning) menawarkan peluang untuk membangun model prediktif yang mampu mengklasifikasikan jamur berdasarkan atribut fisiknya. Dengan dataset yang memadai, seperti yang tersedia pada dataset klasifikasi jamur dari Kaggle, kita dapat melatih model untuk membedakan antara jamur yang dapat dimakan dan yang beracun [5]. Proyek ini bertujuan untuk memanfaatkan pembelajaran mesin guna menciptakan alat klasifikasi otomatis yang dapat meningkatkan keamanan publik, mempercepat proses identifikasi, dan mengurangi risiko kesalahan fatal akibat konsumsi jamur beracun [6].
+Dalam konteks teknologi dan data, perkembangan dalam pembelajaran mesin (machine learning) menawarkan peluang untuk membangun model prediktif yang mampu mengklasifikasikan jamur berdasarkan atribut fisiknya. Dengan dataset yang memadai, seperti yang tersedia pada dataset klasifikasi jamur dari Kaggle, kita dapat melatih model untuk membedakan antara jamur yang dapat dimakan dan yang beracun [5](https://drpress.org/ojs/index.php/ajst/article/download/16801/16304). Proyek ini bertujuan untuk memanfaatkan pembelajaran mesin guna menciptakan alat klasifikasi otomatis yang dapat meningkatkan keamanan publik, mempercepat proses identifikasi, dan mengurangi risiko kesalahan fatal akibat konsumsi jamur beracun [6](https://ieeexplore.ieee.org/abstract/document/10469539).
 
-Proyek ini tidak hanya memiliki nilai praktis, tetapi juga dapat berfungsi sebagai kontribusi penting dalam edukasi dan keselamatan publik. Dengan mengotomatiskan identifikasi jamur, kita dapat memberikan solusi inovatif yang berguna bagi kolektor jamur, komunitas peneliti, dan masyarakat umum yang terpapar risiko konsumsi jamur yang salah [7].
+Proyek ini tidak hanya memiliki nilai praktis, tetapi juga dapat berfungsi sebagai kontribusi penting dalam edukasi dan keselamatan publik. Dengan mengotomatiskan identifikasi jamur, kita dapat memberikan solusi inovatif yang berguna bagi kolektor jamur, komunitas peneliti, dan masyarakat umum yang terpapar risiko konsumsi jamur yang salah [7](https://jurnal.iaii.or.id/index.php/RESTI/article/view/5498).
 
 ## Business Understanding
 ### Problem Statements
@@ -246,10 +246,17 @@ Confusion Matrix sangat berguna untuk:
 Dengan Confusion Matrix, kita bisa mendapatkan gambaran yang lebih mendalam tentang kinerja model, terutama dalam aplikasi di mana kesalahan positif atau negatif memiliki dampak yang signifikan, seperti dalam diagnosa medis atau deteksi penipuan.
 
 ## Referensi
-[1]. A. Ramesh and K. Geetha, "Mushroom Classification Using Machine Learning Techniques for Edibility Prediction," Journal of Artificial Intelligence Research, vol. 14, no. 2, pp. 213-229, 2023.
-[2]. R. Lahouar and M. Hammami, "Enhancing Mushroom Poisoning Prevention through Image-based Mushroom Recognition Models," International Journal of Machine Vision Applications, vol. 7, no. 1, pp. 55-67, 2022.
-[3]. Kaggle Mushroom Classification Dataset Documentation, [Online]. Available: https://www.kaggle.com/uciml/mushroom-classification. Accessed: Oct. 10, 2023.
-[4]. L. Alfonsi and M. Grimaldi, "The Role of Technology in Fungus Identification: A Systematic Review," Journal of Environmental Science and Safety, vol. 9, no. 3, pp. 105-120, 2023.
-[5]. Z. Tang and X. Li, "Machine Learning for Toxic Mushroom Classification: A Case Study with Support Vector Machines and Neural Networks," Journal of Toxicological Informatics, vol. 3, no. 2, pp. 189-202, 2023.
-[6]. M. Mahapatra and V. Singhal, "Automating Mushroom Identification Using Convolutional Neural Networks," Journal of Computational Biology and Bioinformatics, vol. 11, no. 4, pp. 310-325, 2022.
-[7]. A. Pérez and G. Martínez, "Understanding Mushroom Toxicity and Its Implications in Public Health: An Integrated Technological Approach," International Journal of Food Safety and Technology, vol. 5, no. 2, pp. 145-158, 2023.
+[1] O. Tarawneh, M. Tarawneh, Y. Sharrab, and M. Husni, "Mushroom classification using machine-learning techniques," in AIP Conference Proceedings, vol. 2979, no. 1, Oct. 2023.
+
+[2] Y. Wang, J. Du, H. Zhang, and X. Yang, "Mushroom toxicity recognition based on multigrained cascade forest," Scientific Programming, vol. 2020, no. 1, pp. 1-10, 2020.
+
+[3] Kaggle Mushroom Classification Dataset Documentation, [Online]. Available: https://www.kaggle.com/uciml/mushroom-classification. Accessed: Nov. 3, 2024.
+
+[4] H. Ujir, I. Hipiny, M. H. Bolhassan, K. N. Fazira Ku Azir, and S. A. Ali, "Automating Mushroom Culture Classification: A Machine Learning Approach," International Journal of Advanced Computer Science & Applications, vol. 15, no. 4, 2024.
+
+[5] X. Guo, "Research on Mushroom Image Classification Algorithm Based on Deep Sparse Dictionary Learning," Academic Journal of Science and Technology, vol. 9, no. 1, pp. 235-240, 2024.
+
+[6] R. Sahu, S. Pandey, R. Verma, and P. Pandey, "Ensemble Learning based Classification of Edible and Poisonous Agaricus Mushrooms," in 2024 Fourth International Conference on Advances in Electrical, Computing, Communication and Sustainable Technologies (ICAECT), Jan. 2024, pp. 1-7.
+
+[7] L. Farokhah and S. Y. Riska, "Analysis and Development of Eight Deep Learning Architectures for the Classification of Mushrooms," Jurnal RESTI (Rekayasa Sistem dan Teknologi Informasi), vol. 8, no. 1, pp. 142-149, 2024.
+
