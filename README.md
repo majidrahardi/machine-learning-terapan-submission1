@@ -102,10 +102,7 @@ Dataset ini berisi data tentang berbagai spesies jamur, dengan tujuan mengklasif
 
 Dataset ini dapat digunakan untuk membangun model klasifikasi yang memprediksi apakah suatu jamur dapat dimakan atau beracun berdasarkan karakteristik fisiknya.
 
-## Data Preparation
-Tahap Data Preparation bertujuan untuk memastikan bahwa data yang digunakan dalam pembuatan model klasifikasi memiliki kualitas yang baik dan siap untuk diolah. Data yang bersih, bebas dari inkonsistensi, dan disiapkan dengan baik merupakan prasyarat penting untuk mendapatkan hasil analisis yang akurat dan model pembelajaran mesin yang optimal. Berikut adalah langkah-langkah yang dilakukan dalam proses persiapan data pada proyek klasifikasi jamur ini:
-
-### 1. Eksplorasi Data Awal
+### Eksplorasi Data Awal
 Dataset yang digunakan berisi informasi tentang spesies jamur, termasuk label klasifikasi "edible" (dapat dimakan) atau "poisonous" (beracun) serta 22 atribut fisik lainnya. Tahap awal mencakup eksplorasi data untuk memahami distribusi atribut, identifikasi tipe data, dan analisis awal nilai-nilai yang ada pada setiap atribut.
 - ```python
   df.shape
@@ -114,6 +111,9 @@ Dataset yang digunakan berisi informasi tentang spesies jamur, termasuk label kl
   ```python
   (8124, 23)
   ```
+- Jumlah entri (baris): 8.124
+- Jumlah atribut (kolom): 23
+
 
 - ```python
   df.keys()
@@ -128,6 +128,7 @@ Dataset yang digunakan berisi informasi tentang spesies jamur, termasuk label kl
        'ring-type', 'spore-print-color', 'population', 'habitat'],
       dtype='object')
   ```
+Melihat Nama variabel pada dataset
 
 - ```python
   df.isnull().sum()
@@ -136,6 +137,7 @@ Dataset yang digunakan berisi informasi tentang spesies jamur, termasuk label kl
   
 ![isNull](https://github.com/user-attachments/assets/d4a3117d-6d0b-400f-942a-7ffd65d4c1fd)
 
+Output tersebut menunjukkan bahwa tidak ada nilai yang hilang (null) dalam DataFrame, karena setiap kolom memiliki jumlah nilai kosong (atau nilai null) sama dengan 0. Artinya, data lengkap tersedia untuk semua kolom, dan tidak ada informasi yang hilang atau tidak tercatat di dalam dataset.
 
 - ```python
   df.show()
@@ -185,7 +187,9 @@ only showing top 20 rows
 
   ```
 
-### 2. Cek Missing Value 
+Output tersebut menunjukkan bahwa DataFrame memiliki total 8124 catatan, yang terbagi menjadi dua kelas: "e" (dengan 4208 catatan) dan "p" (dengan 3916 catatan). Ini mengindikasikan bahwa dataset memiliki distribusi kelas yang hampir seimbang, dengan sedikit lebih banyak catatan untuk kelas "e" dibandingkan dengan kelas "p".
+
+### Cek Missing Value 
 Salah satu tantangan utama dalam dataset ini adalah adanya atribut dengan nilai yang hilang, oleh karena itu perlu diadakan pengecekan data hilang.
 
 - ```python
@@ -220,9 +224,9 @@ Salah satu tantangan utama dalam dataset ini adalah adanya atribut dengan nilai 
     habitat: 0
   ```
 
-Dari output tersebut menunjukan bahwa tidak ada data yang hilang.
+Output tersebut menunjukkan bahwa tidak ada nilai yang hilang dalam dataset untuk setiap kolom, karena semua kolom memiliki jumlah nilai kosong (null) sama dengan 0. Ini berarti dataset sepenuhnya lengkap dan tidak memerlukan proses imputasi atau penanganan data hilang sebelum analisis lebih lanjut.
 
-### 3. Transformasi dan Encoding Data Kategorikal
+### Transformasi dan Encoding Data Kategorikal
 Sebagian besar atribut dalam dataset adalah kategori, dengan nilai-nilai berbentuk simbol atau huruf. Agar data ini dapat digunakan dalam model pembelajaran mesin, diperlukan proses encoding untuk mengubah data kategorikal menjadi bentuk numerik. 
 
 - ```python
@@ -249,6 +253,8 @@ Sebagian besar atribut dalam dataset adalah kategori, dengan nilai-nilai berbent
 
 only showing top 20 rows
 
+Output tersebut menunjukkan bahwa data awal telah dikodekan atau diubah menjadi indeks numerik, di mana setiap kolom atribut, seperti "class," "cap-shape," dan "odor," kini direpresentasikan dengan nilai numerik (misalnya, 0.0, 1.0, dll.) untuk memfasilitasi analisis dan pemrosesan lebih lanjut, seperti pelatihan model machine learning. Setiap nilai indeks tersebut mengacu pada kategori unik dari atribut yang sesuai, dan hanya 20 baris pertama dari data yang dikodekan yang ditampilkan sebagai sampel.
+
 - ```python
 	numeric_features = [t[0] for t in df.dtypes if t[1] in ['int','double']]
 	numeric_summary = df.select(numeric_features).summary()
@@ -268,7 +274,9 @@ only showing top 20 rows
 | max    | 1.0         | 5.0             | 3.0               | 9.0              | 1.0            | 8.0         | 1.0                   | 1.0                | 1.0             | 11.0              | 1.0               | 4.0               | 3.0                          | 3.0                          | 8.0                        | 8.0                        | 0.0             | 3.0              | 2.0               | 4.0              | 8.0                     | 5.0              | 6.0           |
 
 
-### 4. Pemeriksaan Ketidakseimbangan Kelas
+Output tersebut memberikan ringkasan statistik dari kolom-kolom terkode dalam dataset, termasuk jumlah data (count), rata-rata (mean), standar deviasi (stddev), nilai minimum (min), kuartil pertama (25%), median (50%), kuartil ketiga (75%), dan nilai maksimum (max) untuk setiap kolom yang bertipe data numerik. Ini membantu memahami distribusi dan rentang nilai dari atribut terkode, yang mencakup informasi seperti "class_index" hingga "habitat_index," di mana nilai-nilai ini mewakili kategori yang telah diubah menjadi bentuk numerik untuk keperluan analisis dan model machine learning.
+
+### Pemeriksaan Ketidakseimbangan Kelas
 Mengingat bahwa target prediksi adalah label klasifikasi jamur (dapat dimakan atau beracun), penting untuk memeriksa keseimbangan distribusi kelas target. Ketidakseimbangan kelas yang signifikan dapat mempengaruhi performa model. Jika ditemukan, langkah-langkah penanganan seperti:
 - **Synthetic Minority Oversampling Technique (SMOTE)**
 - ```python
@@ -284,8 +292,9 @@ Mengingat bahwa target prediksi adalah label klasifikasi jamur (dapat dimakan at
 | 0.0         | 4208  |
 | 1.0         | 4208  |
 
+Output tersebut menunjukkan hasil dari proses oversampling menggunakan SMOTE (Synthetic Minority Over-sampling Technique), di mana jumlah data untuk kedua kelas dalam kolom "class_index" kini seimbang, masing-masing memiliki 4208 catatan. Sebelumnya, kelas yang kurang terwakili telah ditingkatkan jumlahnya untuk mengatasi ketidakseimbangan kelas, sehingga dataset menjadi lebih seimbang dan dapat meningkatkan kinerja model machine learning dalam memprediksi kedua kelas secara adil.
 
-### 5. Analisis Korelasi
+### Analisis Korelasi
 Analisis Korelasi adalah metode statistik yang digunakan untuk mengukur dan mengevaluasi hubungan antara dua variabel atau lebih. Tujuan utama dari analisis ini adalah untuk menentukan seberapa kuat hubungan tersebut dan apakah hubungan tersebut bersifat positif, negatif, atau netral.
 - ```python
 	#Menampilkan heatmap menggunakan Seaborn dan Matplotlib
@@ -297,7 +306,37 @@ Analisis Korelasi adalah metode statistik yang digunakan untuk mengukur dan meng
   Kode tersebut memiliki luaran:
   ![CorrelationAnalysis](https://github.com/user-attachments/assets/006b7361-5a54-4953-8541-e80b90179eef)
 
-### 6. Pemisahan Data
+Gambar tersebut menunjukkan heatmap dari matriks korelasi yang merepresentasikan hubungan antara kolom-kolom numerik dalam dataset. Warna dalam heatmap berkisar dari -1 (biru tua) hingga +1 (merah tua), di mana angka yang lebih tinggi atau lebih dekat dengan +1 menunjukkan korelasi positif yang kuat, angka yang lebih rendah atau mendekati -1 menunjukkan korelasi negatif yang kuat, dan angka mendekati 0 menunjukkan korelasi yang lemah atau tidak ada korelasi. Diagonal utama semuanya merah tua dengan nilai +1 karena setiap variabel memiliki korelasi sempurna dengan dirinya sendiri. Ada beberapa korelasi signifikan yang dapat diamati, seperti hubungan kuat antara "ring-type_index" dan "ring-number_index," yang menunjukkan bahwa ada pola atau ketergantungan di antara atribut-atribut ini.
+
+## Data Preparation
+Tahap Data Preparation bertujuan untuk memastikan bahwa data yang digunakan dalam pembuatan model klasifikasi memiliki kualitas yang baik dan siap untuk diolah. Data yang bersih, bebas dari inkonsistensi, dan disiapkan dengan baik merupakan prasyarat penting untuk mendapatkan hasil analisis yang akurat dan model pembelajaran mesin yang optimal. Berikut adalah langkah-langkah yang dilakukan dalam proses persiapan data pada proyek klasifikasi jamur ini:
+
+### Fitur Selection (Pearson Correlation)
+- ```python
+	# Menentukan ambang korelasi yang dianggap relevan
+	threshold = 0.1
+	# Memfilter fitur-fitur yang memiliki korelasi lebih besar dari ambang dengan class_index
+	relevant_features = [col_name for col_name in correlation_df.index
+                     if abs(correlation_df.loc[col_name, 'class_index']) > threshold
+                     and col_name != "class_index"]
+
+	# Menampilkan 5 fitur teratas yang dianggap relevan
+	print("5 Fitur Teratas yang Dianggap Relevan terhadap class_index:")
+	for feature in relevant_features[:5]:
+   	 print(feature)
+  	```
+  Kode tersebut memiliki luaran:
+  ```python
+ 	5 Fitur Teratas yang Dianggap Relevan terhadap class_index:
+	cap-surface_index
+	bruises_index
+	odor_index
+	gill-attachment_index
+	gill-spacing_index
+  ```
+Output tersebut menunjukkan lima fitur teratas yang paling relevan terhadap "class_index," yaitu "cap-surface_index," "bruises_index," "odor_index," "gill-attachment_index," dan "gill-spacing_index." Ini berarti bahwa fitur-fitur ini memiliki hubungan yang lebih signifikan dengan variabel target "class_index" dibandingkan dengan fitur lainnya, yang dapat mempengaruhi prediksi atau klasifikasi dalam model machine learning. Relevansi ini dapat diukur melalui korelasi atau metode pemilihan fitur lainnya, dan fitur-fitur yang dipilih diharapkan memberikan kontribusi besar dalam meningkatkan kinerja model.
+
+### Pemisahan Data
 Data yang sudah bersih dan siap digunakan kemudian dibagi menjadi data latih (training set) dan data uji (testing set). Pembagian ini dilakukan untuk memastikan bahwa model dapat dievaluasi secara objektif, dengan mengukur kinerjanya pada data yang belum pernah dilihat sebelumnya.
 - ```python
 	# Membagi data menjadi train (50%), test (25%), dan validation (25%)
@@ -313,8 +352,36 @@ Data yang sudah bersih dan siap digunakan kemudian dibagi menjadi data latih (tr
 	Test Dataset Count: 2044
 	Validation Dataset Count: 1965
   ```
+Output tersebut menunjukkan bahwa dataset telah dibagi menjadi tiga subset: training, test, dan validation, menggunakan metode randomSplit dengan rasio 50:50 untuk pembagian awal, diikuti oleh pembagian 50:50 dari subset sementara untuk menghasilkan set test dan validation. Hasilnya, dataset training memiliki 4115 catatan, dataset test memiliki 2044 catatan, dan dataset validation memiliki 1965 catatan. Pembagian ini dilakukan untuk melatih model pada data training, menguji kinerjanya pada data test, dan memvalidasi atau menyetel model lebih lanjut menggunakan data validation.
 
 ## Modeling
+
+- ```python
+	# Inisialisasi model
+	rf = RandomForestClassifier(featuresCol='features', labelCol='class_index')
+	lr = LogisticRegression(featuresCol='features', labelCol='class_index')
+	dt = DecisionTreeClassifier(featuresCol='features', labelCol='class_index')
+	nb = NaiveBayes(featuresCol='features', labelCol='class_index')
+	
+	# Fit model pada data latih
+	rf_model = rf.fit(train)
+	lr_model = lr.fit(train)
+	dt_model = dt.fit(train)
+	nb_model = nb.fit(train)
+	
+	# Transformasi data uji dan validasi dengan model yang sudah dilatih
+	rf_test_predictions = rf_model.transform(test)
+	lr_test_predictions = lr_model.transform(test)
+	dt_test_predictions = dt_model.transform(test)
+	nb_test_predictions = nb_model.transform(test)
+	
+	rf_validation_predictions = rf_model.transform(validation)
+	lr_validation_predictions = lr_model.transform(validation)
+	dt_validation_predictions = dt_model.transform(validation)
+	nb_validation_predictions = nb_model.transform(validation)
+  ```
+Kode tersebut menginisialisasi empat model klasifikasi dari pustaka PySpark ML, yaitu RandomForestClassifier, LogisticRegression, DecisionTreeClassifier, dan NaiveBayes. Masing-masing model dilatih (fit) pada data training untuk membuat model yang telah terlatih, dengan "features" sebagai kolom fitur dan "class_index" sebagai label atau target yang diprediksi. Setelah pelatihan, keempat model tersebut digunakan untuk memprediksi hasil pada data test dan validation, menghasilkan prediksi yang akan digunakan untuk evaluasi kinerja model. Dengan langkah ini, berbagai model siap untuk dianalisis dan dibandingkan berdasarkan performa mereka dalam memprediksi kelas yang benar.
+
 ### Random Forest:
 #### Kelebihan Random Forest:
 1. **Akurasi Tinggi** – Lebih akurat dibanding model tunggal.
