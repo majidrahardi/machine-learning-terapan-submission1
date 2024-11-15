@@ -538,6 +538,12 @@ Terakhir, Naive Bayes menunjukkan hasil yang lebih rendah dengan akurasi 75.54%,
 
 Secara keseluruhan, Random Forest dan Decision Tree adalah model yang lebih unggul dalam mengklasifikasikan data, sedangkan Logistic Regression dan Naive Bayes memiliki performa yang lebih rendah. Oleh karena itu, untuk aplikasi yang membutuhkan akurasi dan performa tinggi, Random Forest atau Decision Tree akan menjadi pilihan yang lebih baik.
 
+Dalam laporan ini, kita mengevaluasi dampak dari model klasifikasi jamur yang dikembangkan terhadap Business Understanding yang telah diidentifikasi. Tujuan dari model ini adalah untuk mengatasi tantangan kritis dalam mengklasifikasikan jamur sebagai "dapat dimakan" atau "beracun," mengingat bahwa kesalahan dalam identifikasi dapat berdampak fatal bagi kesehatan manusia. Model ini dirancang untuk menjawab problem statement yang sangat spesifik: memberikan sistem klasifikasi yang akurat dan efisien berdasarkan karakteristik fisik jamur, yang sering menjadi dasar dalam identifikasi manual yang memakan waktu dan memerlukan keahlian tinggi.
+
+Evaluasi menunjukkan bahwa model yang dikembangkan, khususnya algoritma seperti Random Forest dan Decision Tree, berhasil mencapai tingkat akurasi yang tinggi (lebih dari 98%) dalam mengklasifikasikan jamur. Ini menunjukkan bahwa model sudah cukup menjawab problem statement dengan memberikan solusi yang meminimalkan risiko kesalahan identifikasi. Dengan tingkat akurasi yang tinggi, model ini juga berhasil mencapai tujuan untuk meningkatkan keamanan publik. Pengguna umum, seperti kolektor jamur, dapat lebih percaya diri dalam membedakan jamur beracun dari yang dapat dimakan, yang berpotensi mengurangi insiden keracunan.
+
+Dampak dari solution statement yang direncanakan juga cukup signifikan. Melalui pemrosesan data yang teliti dan pengembangan model yang dioptimalkan, model ini mampu memberikan prediksi yang akurat dengan memanfaatkan atribut fisik yang sudah tersedia dalam dataset. Implementasi alat identifikasi berbasis model ini akan sangat berguna, karena tidak hanya mengotomatisasi proses klasifikasi yang kompleks tetapi juga memberikan kemudahan akses bagi masyarakat umum tanpa memerlukan keahlian khusus. Dengan demikian, solusi ini memiliki dampak positif yang nyata dalam meningkatkan keselamatan dan efisiensi identifikasi jamur.
+
 ## Referensi
 [1] O. Tarawneh, M. Tarawneh, Y. Sharrab, and M. Husni, "Mushroom classification using machine-learning techniques," in AIP Conference Proceedings, vol. 2979, no. 1, Oct. 2023.
 
