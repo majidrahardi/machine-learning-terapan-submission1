@@ -248,9 +248,41 @@ Sebagian besar atribut dalam dataset adalah kategori, dengan nilai-nilai berbent
 
 only showing top 20 rows
 
+- ```python
+	numeric_features = [t[0] for t in df.dtypes if t[1] in ['int','double']]
+	numeric_summary = df.select(numeric_features).summary()
+	numeric_summary.show(truncate=False)
+  ```
+  Kode tersebut memiliki luaran:
+
+| summary | class_index | cap-shape_index | cap-surface_index | cap-color_index | bruises_index | odor_index | gill-attachment_index | gill-spacing_index | gill-size_index | gill-color_index | stalk-shape_index | stalk-root_index | stalk-surface-above-ring_index | stalk-surface-below-ring_index | stalk-color-above-ring_index | stalk-color-below-ring_index | veil-type_index | veil-color_index | ring-number_index | ring-type_index | spore-print-color_index | population_index | habitat_index |
+|---------|-------------|-----------------|-------------------|-----------------|---------------|------------|-----------------------|--------------------|-----------------|------------------|-------------------|------------------|------------------------------|------------------------------|----------------------------|----------------------------|-----------------|------------------|-------------------|------------------|-------------------------|------------------|---------------|
+| count  | 8124        | 8124            | 8124              | 8124            | 8124          | 8124       | 8124                  | 8124               | 8124            | 8124             | 8124              | 8124             | 8124                         | 8124                         | 8124                       | 8124                       | 8124            | 8124             | 8124              | 8124             | 8124                    | 8124             | 8124          |
+| mean   | 0.482       | 0.777           | 0.887             | 1.785            | 0.416          | 1.453       | 0.026                 | 0.161              | 0.309           | 2.703            | 0.433             | 0.881             | 0.437                        | 0.536                        | 0.978                      | 1.018                      | 0.0             | 0.038            | 0.083             | 0.696            | 1.495                   | 1.064             | 1.356          |
+| stddev | 0.500       | 0.876           | 0.821             | 1.650            | 0.493          | 1.916       | 0.159                 | 0.368              | 0.462           | 2.401            | 0.495             | 1.037             | 0.632                        | 0.779                        | 1.483                      | 1.523                      | 0.0             | 0.258            | 0.291             | 0.787            | 1.381                   | 1.392             | 1.544          |
+| min    | 0.0         | 0.0             | 0.0               | 0.0              | 0.0            | 0.0         | 0.0                   | 0.0                | 0.0             | 0.0               | 0.0               | 0.0               | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0              | 0.0                     | 0.0              | 0.0           |
+| 25%    | 0.0         | 0.0             | 0.0               | 0.0              | 0.0            | 0.0         | 0.0                   | 0.0                | 0.0             | 1.0               | 0.0               | 0.0               | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 0.0              | 0.0                     | 0.0              | 0.0           |
+| 50%    | 0.0         | 1.0             | 1.0               | 1.0              | 0.0            | 1.0         | 0.0                   | 0.0                | 0.0             | 2.0               | 0.0               | 1.0               | 0.0                          | 0.0                          | 0.0                        | 0.0                        | 0.0             | 0.0              | 0.0               | 1.0              | 1.0                     | 1.0              | 1.0           |
+| 75%    | 1.0         | 1.0             | 2.0               | 3.0              | 1.0            | 2.0         | 0.0                   | 0.0                | 1.0             | 4.0               | 1.0               | 1.0               | 1.0                          | 1.0                          | 1.0                        | 1.0                        | 0.0             | 0.0              | 0.0               | 1.0              | 2.0                     | 2.0              | 2.0           |
+| max    | 1.0         | 5.0             | 3.0               | 9.0              | 1.0            | 8.0         | 1.0                   | 1.0                | 1.0             | 11.0              | 1.0               | 4.0               | 3.0                          | 3.0                          | 8.0                        | 8.0                        | 0.0             | 3.0              | 2.0               | 4.0              | 8.0                     | 5.0              | 6.0           |
+
+
 ### 4. Pemeriksaan Ketidakseimbangan Kelas
 Mengingat bahwa target prediksi adalah label klasifikasi jamur (dapat dimakan atau beracun), penting untuk memeriksa keseimbangan distribusi kelas target. Ketidakseimbangan kelas yang signifikan dapat mempengaruhi performa model. Jika ditemukan, langkah-langkah penanganan seperti:
 - **Synthetic Minority Oversampling Technique (SMOTE)**
+- ```python
+	class_counts_after = df_resampled.groupBy("class_index").count()
+	print("Class counts after SMOTE:")
+	class_counts_after.show()
+  ```
+  Kode tersebut memiliki luaran:
+
+**Class counts after SMOTE:**
+| class_index | count |
+|-------------|-------|
+| 0.0         | 4208  |
+| 1.0         | 4208  |
+
 
 ### 5. Analisis Korelasi
 Analisis Korelasi adalah metode statistik yang digunakan untuk mengukur dan mengevaluasi hubungan antara dua variabel atau lebih. Tujuan utama dari analisis ini adalah untuk menentukan seberapa kuat hubungan tersebut dan apakah hubungan tersebut bersifat positif, negatif, atau netral.
