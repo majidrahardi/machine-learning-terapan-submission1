@@ -20,25 +20,16 @@ Proyek ini tidak hanya memiliki nilai praktis, tetapi juga dapat berfungsi sebag
 ### Goals
 1. **Membangun Model Klasifikasi**  
    Tujuan utama adalah membangun model pembelajaran mesin yang dapat mengklasifikasikan jamur sebagai "dapat dimakan" atau "beracun" dengan tingkat akurasi tinggi berdasarkan atribut-atribut fisik yang diberikan dalam dataset.
-   
-2. **Meningkatkan Keamanan Publik**  
-   Dengan memiliki alat klasifikasi yang andal, pengguna dapat mengurangi risiko kesalahan dalam identifikasi jamur yang berbahaya. Hal ini dapat mengurangi jumlah keracunan akibat jamur, memberikan keamanan lebih bagi pengumpul jamur dan masyarakat umum.
-   
-3. **Mengotomatiskan Identifikasi Jamur**  
-   Membantu pengguna umum dalam mengidentifikasi jamur tanpa memerlukan pengetahuan mendalam tentang klasifikasi jamur dengan menggunakan ciri-ciri fisik yang diinputkan ke dalam model.
 
 ### Solution Statements
 1. **Pengumpulan Data dan Pemrosesan Data**  
    Menggunakan dataset klasifikasi jamur dari Kaggle, dataset yang sudah tersedia ini berisi atribut-atribut fisik jamur. Langkah pertama adalah memastikan data bersih, mengatasi nilai yang hilang, dan menormalkan atribut.
    
 2. **Pengembangan Model Pembelajaran Mesin**  
-   Menggunakan metode pembelajaran mesin yang sesuai seperti algoritma klasifikasi (contoh: Random Forest, Decision Tree, atau Logistic Regression) untuk membangun model klasifikasi yang dapat memprediksi label "dapat dimakan" atau "beracun" berdasarkan atribut fisik.
+   Menggunakan metode pembelajaran mesin yang sesuai seperti algoritma klasifikasi untuk membangun model klasifikasi yang dapat memprediksi label "dapat dimakan" atau "beracun" berdasarkan atribut fisik.
    
-3. **Evaluasi Model dan Optimalisasi**  
-   Mengevaluasi model menggunakan metrik seperti akurasi, presisi, dan recall untuk memastikan kinerja yang baik. Melakukan optimalisasi model untuk meningkatkan performa dan mengurangi tingkat kesalahan.
-   
-4. **Implementasi dan Penyediaan Alat Identifikasi**  
-   Mengimplementasikan model dalam aplikasi yang dapat digunakan oleh pengguna umum untuk mengidentifikasi jamur berdasarkan input karakteristik fisik, sehingga mengurangi potensi risiko konsumsi jamur yang beracun.
+3. **Evaluasi Model**  
+   Mengevaluasi model menggunakan metrik seperti akurasi, presisi, dan recall untuk memastikan kinerja yang baik. 
 
 ## Data Understanding
 ### Deskripsi Dataset
@@ -226,6 +217,23 @@ Salah satu tantangan utama dalam dataset ini adalah adanya atribut dengan nilai 
 
 Output tersebut menunjukkan bahwa tidak ada nilai yang hilang dalam dataset untuk setiap kolom, karena semua kolom memiliki jumlah nilai kosong (null) sama dengan 0. Ini berarti dataset sepenuhnya lengkap dan tidak memerlukan proses imputasi atau penanganan data hilang sebelum analisis lebih lanjut.
 
+### Analisis Korelasi
+Analisis Korelasi adalah metode statistik yang digunakan untuk mengukur dan mengevaluasi hubungan antara dua variabel atau lebih. Tujuan utama dari analisis ini adalah untuk menentukan seberapa kuat hubungan tersebut dan apakah hubungan tersebut bersifat positif, negatif, atau netral.
+- ```python
+	#Menampilkan heatmap menggunakan Seaborn dan Matplotlib
+	plt.figure(figsize=(12, 8))
+	sns.heatmap(correlation_df, annot=True, cmap="coolwarm", fmt=".2f", linewidths=.5)
+	plt.title("Correlation Matrix Heatmap (Numeric Columns Only)")
+	plt.show()
+  ```
+  Kode tersebut memiliki luaran:
+  ![CorrelationAnalysis](https://github.com/user-attachments/assets/006b7361-5a54-4953-8541-e80b90179eef)
+
+Gambar tersebut menunjukkan heatmap dari matriks korelasi yang merepresentasikan hubungan antara kolom-kolom numerik dalam dataset. Warna dalam heatmap berkisar dari -1 (biru tua) hingga +1 (merah tua), di mana angka yang lebih tinggi atau lebih dekat dengan +1 menunjukkan korelasi positif yang kuat, angka yang lebih rendah atau mendekati -1 menunjukkan korelasi negatif yang kuat, dan angka mendekati 0 menunjukkan korelasi yang lemah atau tidak ada korelasi. Diagonal utama semuanya merah tua dengan nilai +1 karena setiap variabel memiliki korelasi sempurna dengan dirinya sendiri. Ada beberapa korelasi signifikan yang dapat diamati, seperti hubungan kuat antara "ring-type_index" dan "ring-number_index," yang menunjukkan bahwa ada pola atau ketergantungan di antara atribut-atribut ini.
+
+## Data Preparation
+Tahap Data Preparation bertujuan untuk memastikan bahwa data yang digunakan dalam pembuatan model klasifikasi memiliki kualitas yang baik dan siap untuk diolah. Data yang bersih, bebas dari inkonsistensi, dan disiapkan dengan baik merupakan prasyarat penting untuk mendapatkan hasil analisis yang akurat dan model pembelajaran mesin yang optimal. Berikut adalah langkah-langkah yang dilakukan dalam proses persiapan data pada proyek klasifikasi jamur ini:
+
 ### Transformasi dan Encoding Data Kategorikal
 Sebagian besar atribut dalam dataset adalah kategori, dengan nilai-nilai berbentuk simbol atau huruf. Agar data ini dapat digunakan dalam model pembelajaran mesin, diperlukan proses encoding untuk mengubah data kategorikal menjadi bentuk numerik. 
 
@@ -293,23 +301,6 @@ Mengingat bahwa target prediksi adalah label klasifikasi jamur (dapat dimakan at
 | 1.0         | 4208  |
 
 Output tersebut menunjukkan hasil dari proses oversampling menggunakan SMOTE (Synthetic Minority Over-sampling Technique), di mana jumlah data untuk kedua kelas dalam kolom "class_index" kini seimbang, masing-masing memiliki 4208 catatan. Sebelumnya, kelas yang kurang terwakili telah ditingkatkan jumlahnya untuk mengatasi ketidakseimbangan kelas, sehingga dataset menjadi lebih seimbang dan dapat meningkatkan kinerja model machine learning dalam memprediksi kedua kelas secara adil.
-
-### Analisis Korelasi
-Analisis Korelasi adalah metode statistik yang digunakan untuk mengukur dan mengevaluasi hubungan antara dua variabel atau lebih. Tujuan utama dari analisis ini adalah untuk menentukan seberapa kuat hubungan tersebut dan apakah hubungan tersebut bersifat positif, negatif, atau netral.
-- ```python
-	#Menampilkan heatmap menggunakan Seaborn dan Matplotlib
-	plt.figure(figsize=(12, 8))
-	sns.heatmap(correlation_df, annot=True, cmap="coolwarm", fmt=".2f", linewidths=.5)
-	plt.title("Correlation Matrix Heatmap (Numeric Columns Only)")
-	plt.show()
-  ```
-  Kode tersebut memiliki luaran:
-  ![CorrelationAnalysis](https://github.com/user-attachments/assets/006b7361-5a54-4953-8541-e80b90179eef)
-
-Gambar tersebut menunjukkan heatmap dari matriks korelasi yang merepresentasikan hubungan antara kolom-kolom numerik dalam dataset. Warna dalam heatmap berkisar dari -1 (biru tua) hingga +1 (merah tua), di mana angka yang lebih tinggi atau lebih dekat dengan +1 menunjukkan korelasi positif yang kuat, angka yang lebih rendah atau mendekati -1 menunjukkan korelasi negatif yang kuat, dan angka mendekati 0 menunjukkan korelasi yang lemah atau tidak ada korelasi. Diagonal utama semuanya merah tua dengan nilai +1 karena setiap variabel memiliki korelasi sempurna dengan dirinya sendiri. Ada beberapa korelasi signifikan yang dapat diamati, seperti hubungan kuat antara "ring-type_index" dan "ring-number_index," yang menunjukkan bahwa ada pola atau ketergantungan di antara atribut-atribut ini.
-
-## Data Preparation
-Tahap Data Preparation bertujuan untuk memastikan bahwa data yang digunakan dalam pembuatan model klasifikasi memiliki kualitas yang baik dan siap untuk diolah. Data yang bersih, bebas dari inkonsistensi, dan disiapkan dengan baik merupakan prasyarat penting untuk mendapatkan hasil analisis yang akurat dan model pembelajaran mesin yang optimal. Berikut adalah langkah-langkah yang dilakukan dalam proses persiapan data pada proyek klasifikasi jamur ini:
 
 ### Fitur Selection (Pearson Correlation)
 - ```python
@@ -380,9 +371,12 @@ Output tersebut menunjukkan bahwa dataset telah dibagi menjadi tiga subset: trai
 	dt_validation_predictions = dt_model.transform(validation)
 	nb_validation_predictions = nb_model.transform(validation)
   ```
-Kode tersebut menginisialisasi empat model klasifikasi dari pustaka PySpark ML, yaitu RandomForestClassifier, LogisticRegression, DecisionTreeClassifier, dan NaiveBayes. Masing-masing model dilatih (fit) pada data training untuk membuat model yang telah terlatih, dengan "features" sebagai kolom fitur dan "class_index" sebagai label atau target yang diprediksi. Setelah pelatihan, keempat model tersebut digunakan untuk memprediksi hasil pada data test dan validation, menghasilkan prediksi yang akan digunakan untuk evaluasi kinerja model. Dengan langkah ini, berbagai model siap untuk dianalisis dan dibandingkan berdasarkan performa mereka dalam memprediksi kelas yang benar.
+Kode tersebut menginisialisasi empat model klasifikasi dari pustaka PySpark ML, yaitu RandomForestClassifier, LogisticRegression, DecisionTreeClassifier, dan NaiveBayes. 
+Keempat model yang digunakan dalam proyek ini memiliki cara kerja yang berbeda. Semua model yang digunakan di sini menggunakan nilai parameter default yang telah ditentukan oleh pustaka yang digunakan yaitu pustaka PySpark ML.
 
 ### Random Forest:
+Random Forest adalah algoritma ensemble yang menggabungkan banyak pohon keputusan untuk meningkatkan ketepatan prediksi dan mengurangi overfitting. Setiap pohon dalam hutan dibangun menggunakan subset acak dari data pelatihan dan subset acak dari fitur, sehingga meningkatkan variasi antar pohon dan membuat model lebih robust. Dengan parameter default seperti `n_estimators=100` dan `criterion='gini'`, Random Forest sangat efektif dalam menangani data besar dengan fitur yang banyak, serta memberikan hasil yang stabil meski sering kali lebih lambat dalam pelatihan dibandingkan model pohon tunggal.
+
 #### Kelebihan Random Forest:
 1. **Akurasi Tinggi** – Lebih akurat dibanding model tunggal.
 2. **Tahan Overfitting** – Menggabungkan banyak pohon mengurangi overfitting.
@@ -397,6 +391,8 @@ Kode tersebut menginisialisasi empat model klasifikasi dari pustaka PySpark ML, 
 4. **Kurang Optimal untuk Data Waktu** – Tidak cocok untuk data berurutan atau time series.
 
 ### Logistic Regression:
+Logistic Regression adalah algoritma klasifikasi yang digunakan untuk memodelkan probabilitas suatu kelas berdasarkan kombinasi linier dari fitur yang ada. Meskipun bernama "regresi", model ini lebih sering digunakan untuk klasifikasi, dengan menggunakan fungsi sigmoid untuk mengubah log-odds menjadi probabilitas antara 0 dan 1. Dengan parameter default seperti `solver='lbfgs'` dan `max_iter=100`, Logistic Regression efisien dalam menangani masalah klasifikasi biner dan dapat diperbaiki dengan regularisasi untuk meningkatkan performa pada data yang kompleks.
+
 #### Kelebihan Logistic Regression:
 1. **Sederhana dan Mudah Diinterpretasi** – Modelnya sederhana dan mudah dipahami, sehingga memudahkan interpretasi hasil.
 2. **Efisien untuk Dataset Kecil** – Logistic Regression bekerja baik dengan dataset yang lebih kecil dan memiliki fitur yang relevan.
@@ -410,6 +406,8 @@ Kode tersebut menginisialisasi empat model klasifikasi dari pustaka PySpark ML, 
 4. **Mengasumsikan Indepedensi Fitur** – Logistic Regression bekerja optimal jika fitur tidak saling bergantung, asumsi ini sering kali tidak realistis dalam data nyata.
 
 ### Decision Tree:
+Decision Tree adalah algoritma klasifikasi yang membangun pohon keputusan dengan membagi data berdasarkan fitur-fitur yang paling informatif, diukur dengan kriteria seperti Gini Impurity atau Entropy. Proses ini berlanjut hingga data tidak dapat dibagi lebih lanjut atau mencapai kriteria berhenti yang ditentukan. Dengan menggunakan parameter default seperti `criterion='gini'`, `max_depth=None`, dan `min_samples_split=2`, Decision Tree mampu menangani data yang kompleks, meskipun cenderung mudah overfitting jika tidak diatur dengan baik.
+
 #### Kelebihan Decision Tree:
 1. **Mudah Diinterpretasi** – Struktur pohon membuat model ini mudah dipahami, visualisasi langsung menunjukkan jalur keputusan.
 2. **Menangani Data Non-Linear** – Decision Tree dapat menangani data yang memiliki hubungan non-linier, cocok untuk berbagai jenis data.
@@ -423,6 +421,8 @@ Kode tersebut menginisialisasi empat model klasifikasi dari pustaka PySpark ML, 
 4. **Cenderung Bias pada Fitur yang Dominan** – Decision Tree cenderung lebih terfokus pada fitur yang memiliki banyak kategori atau nilai tinggi.
 
 ### Naive Bayes:
+Naive Bayes adalah model klasifikasi berbasis probabilistik yang mengasumsikan independensi antar fitur untuk menghitung probabilitas suatu kelas berdasarkan data yang ada. Menggunakan Teorema Bayes, model ini menghitung probabilitas kelas yang diberikan fitur dan memilih kelas dengan probabilitas tertinggi. Meskipun seringkali tidak realistis untuk mengasumsikan bahwa fitur-fitur saling independen, Naive Bayes sering kali memberikan hasil yang sangat baik, terutama pada masalah klasifikasi teks, dengan nilai parameter default seperti `var_smoothing=1e-9` untuk mencegah pembagian dengan nol.
+
 #### Kelebihan Naive Bayes:
 1. **Cepat dan Efisien** – Naive Bayes memiliki waktu training yang cepat, bahkan pada dataset yang besar.
 2. **Sederhana dan Mudah Diimplementasikan** – Model ini sangat mudah diimplementasikan dan interpretasinya sederhana.
