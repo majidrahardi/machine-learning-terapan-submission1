@@ -87,12 +87,6 @@ Dataset ini berisi data tentang berbagai spesies jamur, dengan tujuan mengklasif
 23. **habitat**: Habitat jamur
     - Nilai: 'g' (grasses), 'l' (leaves), 'm' (meadows), 'p' (paths), 'u' (urban), 'w' (waste), 'd' (woods)
 
-### Catatan Penting
-- Atribut `veil-type` memiliki nilai yang sama untuk semua entri ('p'), sehingga tidak memberikan informasi yang bervariasi dan dapat diabaikan dalam analisis.
-- Atribut `stalk-root` memiliki beberapa nilai yang hilang ('?'), sehingga memerlukan penanganan khusus selama analisis data.
-
-Dataset ini dapat digunakan untuk membangun model klasifikasi yang memprediksi apakah suatu jamur dapat dimakan atau beracun berdasarkan karakteristik fisiknya.
-
 ### Eksplorasi Data Awal
 Dataset yang digunakan berisi informasi tentang spesies jamur, termasuk label klasifikasi "edible" (dapat dimakan) atau "poisonous" (beracun) serta 22 atribut fisik lainnya. Tahap awal mencakup eksplorasi data untuk memahami distribusi atribut, identifikasi tipe data, dan analisis awal nilai-nilai yang ada pada setiap atribut.
 - ```python
